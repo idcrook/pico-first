@@ -1,8 +1,10 @@
-# C++
+C++
+===
 
 https://datasheets.raspberrypi.org/pico/getting-started-with-pico.pdf
 
-## Get SDK and examples
+Get SDK and examples
+--------------------
 
 ```shell
 mkdir -p ~/projects/pico
@@ -11,17 +13,20 @@ git clone --recurse-submodules https://github.com/raspberrypi/pico-sdk.git
 git clone https://github.com/raspberrypi/pico-examples.git
 ```
 
-
-## Install the toolchain
+Install the toolchain
+---------------------
 
 ```shell
 sudo apt update
 sudo apt install cmake gcc-arm-none-eabi libnewlib-arm-none-eabi build-essential
 # on Ubuntu
 sudo apt install libstdc++-arm-none-eabi-newlib
+# for GDB and OpenOCD
+sudo apt install gdb-multiarch
 ```
 
-## Blink an LED
+Blink an LED
+------------
 
 ```
 cd ~/projects/pico/pico-examples
@@ -44,12 +49,10 @@ make -j5
 
 ```
 
-
-
-## Picotool
+Picotool
+--------
 
 from "Appendix B: Using Picotool"
-
 
 ```shell
 cd ~/projects/pico
@@ -92,10 +95,19 @@ sudo ./picotool load -x ~/projects/pico/pico-examples/build/blink/blink.uf2
 
 reboot
 
-
 ```shell
 cd ~/projects/pico/picotool/build
 sudo ./picotool info -a
 # Reboot back into the (a)pplication
 sudo ./picotool reboot -a
 ```
+
+minicom
+-------
+
+```shell
+sudo apt install minicom
+minicom -b 115200 -o -D /dev/ttyACM0
+```
+
+-	To exit minicom, use <kbd>Ctrl-a</kbd> followed by <kbd>x</kbd>.
