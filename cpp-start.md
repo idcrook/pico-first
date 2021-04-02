@@ -33,7 +33,12 @@ cd ~/projects/pico/pico-examples
 mkdir build
 cd build
 export PICO_SDK_PATH=../../pico-sdk
-cmake ..
+
+cmake \
+  -DCMAKE_BUILD_TYPE=Debug \
+  -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
+
+# cmake --build . --target blink --parallel 7
 cd blink
 make -j5
 # will produce `blink.elf` and `blink.uf2`
