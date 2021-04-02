@@ -25,6 +25,47 @@ sudo apt install libstdc++-arm-none-eabi-newlib
 sudo apt install gdb-multiarch
 ```
 
+## Configure environment
+
+
+
+borrowed details from the following run on a Raspberry Pi:
+
+`wget https://raw.githubusercontent.com/raspberrypi/pico-setup/master/pico_setup.sh`
+
+https://datasheets.raspberrypi.org/pico/getting-started-with-pico.pdf
+
+```shell
+# export PICO_SDK_PATH=/home/pi/projects/pico/pico-sdk
+# export PICO_EXAMPLES_PATH=/home/pi/projects/pico/pico-examples
+# export PICO_EXTRAS_PATH=/home/pi/projects/pico/pico-extras
+# export PICO_PLAYGROUND_PATH=/home/pi/projects/pico/pico-playground
+if [[ -d "${HOME}"/projects/pico/pico-sdk ]] ; then
+    export PICO_SDK_PATH="${HOME}"/projects/pico/pico-sdk
+elif [[ -d "${HOME}"/pico/pico-sdk ]] ; then
+    export PICO_SDK_PATH="${HOME}"/pico/pico-sdk
+fi
+
+if [[ -d "${HOME}"/projects/pico/pico-examples ]] ; then
+    export PICO_EXAMPLES_PATH="${HOME}"/projects/pico/pico-examples
+elif [[ -d "${HOME}"/pico/pico-examples ]] ; then
+    export PICO_EXAMPLES_PATH="${HOME}"/pico/pico-examples
+fi
+
+if [[ -d "${HOME}"/projects/pico/pico-extras ]] ; then
+    export PICO_EXTRAS_PATH="${HOME}"/projects/pico/pico-extras
+elif [[ -d "${HOME}"/pico/pico-extras ]] ; then
+    export PICO_EXTRAS_PATH="${HOME}"/pico/pico-extras
+fi
+
+if [[ -d "${HOME}"/projects/pico/pico-playground ]] ; then
+    export PICO_PLAYGROUND_PATH="${HOME}"/projects/pico/pico-playground
+elif [[ -d "${HOME}"/pico/pico-playground ]] ; then
+    export PICO_PLAYGROUND_PATH="${HOME}"/pico/pico-playground
+fi
+
+```
+
 Blink an LED
 ------------
 
