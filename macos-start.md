@@ -44,7 +44,9 @@ Blink an LED
 cd ~/projects/pico/pico-examples
 mkdir build
 cd build
-export PICO_SDK_PATH=../../pico-sdk
+
+echo $PICO_SDK_PATH
+#export PICO_SDK_PATH=../../pico-sdk
 
 cmake \
   -DCMAKE_BUILD_TYPE=Debug \
