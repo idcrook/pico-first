@@ -1,5 +1,5 @@
-C++
-===
+Using C++ SDK on Ubuntu Linux
+=============================
 
 https://datasheets.raspberrypi.org/pico/getting-started-with-pico.pdf
 
@@ -28,12 +28,14 @@ sudo apt install gdb-multiarch
 Blink an LED
 ------------
 
-```
+```shell
 cd ~/projects/pico/pico-examples
+
+echo $PICO_SDK_PATH
+#export PICO_SDK_PATH=../../pico-sdk
+
 mkdir build
 cd build
-export PICO_SDK_PATH=../../pico-sdk
-
 cmake \
   -DCMAKE_BUILD_TYPE=Debug \
   -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
@@ -138,6 +140,3 @@ cmake -DCMAKE_BUILD_TYPE=Debug \
 
 
 ```
-
-Using openocd-svd
------------------

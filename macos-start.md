@@ -85,9 +85,11 @@ cd openocd
 
 export PATH="/opt/homebrew/opt/texinfo/bin:/usr/local/opt/texinfo/bin:$PATH"
 ./bootstrap
-CAPSTONE_CFLAGS="-I/opt/homebrew/Cellar/capstone/4.0.2/include/capstone -I/opt/homebrew/include" \
+CAPSTONE_CFLAGS="$(pkg-config capstone) -I/opt/homebrew/include" \
   ./configure --prefix=/opt/homebrew  \
   --enable-picoprobe --disable-presto --disable-openjtag
+
+make -j5
 
 src/openocd
 ```

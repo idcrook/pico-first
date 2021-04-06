@@ -12,5 +12,6 @@ My notes
 
 These have been tested on actual systems.
 
--	[macOS notes](macos-start.md)
--	[C/C++ notes (Linux and Raspberry Pi OS)](cpp-start.md)
+-	[C/C++ notes on macOS](macos-start.md)
+-	[C/C++ notes on (Ubuntu) Linux](linux-start.md)
+-	[C/C++ notes on Raspberry Pi OS](raspios-start.md)
