@@ -112,7 +112,7 @@ make -j5
 
 #### Picoprobe Wiring
 
-![Picoprobe wiring](picoprobe/pico-debug-1.png)
+![Picoprobe wiring](picoprobe/picoprobe-wiring-with-serial-1.png)
 
 Image copied from: [How to debug a Raspberry Pi Pico with a Mac, SWD and… another Pico | smittytone messes with micros](https://blog.smittytone.net/2021/02/05/how-to-debug-a-raspberry-pi-pico-with-a-mac-swd/)
 
