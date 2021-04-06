@@ -77,16 +77,19 @@ Install OpenOCD (for `picoprobe`\)
 ```shell
 brew install open-ocd --only-dependencies
 brew install automake
-brew install autoconf pkg-config libtool texinfo wget gcc
+brew install autoconf libusb pkg-config libtool texinfo wget gcc
 
 cd ~/projects/pico
 git clone https://github.com/raspberrypi/openocd.git --branch picoprobe --depth=1 --no-single-branch
 cd openocd
 
-export PATH="/opt/homebrew/opt/texinfo/bin:/usr/local/opt/texinfo/bin:$PATH"
+
+cd ~/projects/pico/openocd
+
+export PATH="$(brew --prefix)/opt/texinfo/bin:$PATH"
 ./bootstrap
-CAPSTONE_CFLAGS="$(pkg-config capstone) -I/opt/homebrew/include" \
-  ./configure --prefix=/opt/homebrew  \
+CAPSTONE_CFLAGS="-I$(brew --prefix)/include" \
+  ./configure --prefix="$(brew --prefix)"  \
   --enable-picoprobe --disable-presto --disable-openjtag
 
 make -j5
@@ -127,11 +130,48 @@ minicom --baudrate 115200 --noinit --device /dev/tty.usbmodem0000000000001
 
 -	To exit minicom, use <kbd>Esc-z</kbd> followed by <kbd>x</kbd>.
 
-###
+### OpenOCD
+
+In one terminal window
 
 ```shell
 cd ~/projects/pico/openocd
 src/openocd -f interface/picoprobe.cfg -f target/rp2040.cfg -s tcl
+```
+
+In another window, if using the picoprobe UART
+
+```shell
+minicom --baudrate 115200 --noinit --device /dev/tty.usbmodem*
+```
+
+In a third terminal window
+
+```shell
+cd ~/projects/pico/pico-examples/build/hello_world/serial
+arm-none-eabi-gdb hello_serial.elf
+```
+
+connect GDB to OpenOCD
+
+```console
+(gdb) target remote localhost:3333
+Remote debugging using localhost:3333
+(gdb) load
+Loading section .boot2, size 0x100 lma 0x10000000
+Loading section .text, size 0x4178 lma 0x10000100
+Loading section .rodata, size 0xe60 lma 0x10004278
+Loading section .binary_info, size 0x28 lma 0x100050d8
+Loading section .data, size 0x1e0 lma 0x10005100
+Start address 0x100001e8, load size 21216
+Transfer rate: 6 KB/sec, 3536 bytes/write.
+(gdb) monitor reset init
+target halted due to debug-request, current mode: Thread
+xPSR: 0xf1000000 pc: 0x000000ee msp: 0x20041f00
+target halted due to debug-request, current mode: Thread
+xPSR: 0xf1000000 pc: 0x000000ee msp: 0x20041f00
+(gdb) continue
+Continuing.
 ```
 
 Picotool
