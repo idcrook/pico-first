@@ -106,13 +106,11 @@ make -j5
 
 `picoprobe` installs onto Pico like any other application.
 
-
 #### Picoprobe Wiring
 
 ![Picoprobe wiring](picoprobe/pico-debug-1.png)
 
 Image copied from: [How to debug a Raspberry Pi Pico with a Mac, SWD and… another Pico | smittytone messes with micros](https://blog.smittytone.net/2021/02/05/how-to-debug-a-raspberry-pi-pico-with-a-mac-swd/)
-
 
 ### minicom
 
@@ -131,7 +129,6 @@ minicom --baudrate 115200 --noinit --device /dev/tty.usbmodem0000000000001
 cd ~/projects/pico/openocd
 src/openocd -f interface/picoprobe.cfg -f target/rp2040.cfg -s tcl
 ```
-
 
 Picotool
 --------
