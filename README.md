@@ -1,11 +1,14 @@
-# pico-first
+# pico-first-projects
 
-Start with Raspberry Pi RP2040 and Pico
+Start from the beginning with Raspberry Pi Pico and its RP2040
 
 https://www.raspberrypi.org/documentation/rp2040/getting-started/
 
-https://rptl.io/pico-get-started
+- https://rptl.io/pico-get-started \[pdf\]
 
+## My notes
 
-- [C/C++ notes](cpp-start.md)
+These have been tested on actual systems.
+
 - [macOS notes](macos-start.md)
+- [C/C++ notes (Linux and Raspberry Pi OS)](cpp-start.md)
