@@ -162,13 +162,78 @@ src/openocd
 ### Use Two Pico-s, one as OpenOCD probe for other
 
 
-1. Wire up as in Appendix A.
-2. Flash `picoprobe.uf2` onto "probe" Pico
-3. Other startup tasks
-   a. For Picoprobe's UART: `sudo minicom -D /dev/ttyACM0 -b 115200`
-   b. `sudo src/openocd -f interface/picoprobe.cfg -f target/rp2040.cfg -s tcl`
-       - didn't work from Pi without `sudo`
+1. Flash `picoprobe.uf2` onto "probe" Pico
+1. Wire the "probe" to the "target" as in *Appendix A*.
 
 #### Picoprobe Wiring
 
 ![Picoprobe wiring](picoprobe/picoprobe-wiring-with-serial-1.png)
+
+
+### Using gdb and OpenOCD
+
+- For Picoprobe's UART: `sudo minicom -D /dev/ttyACM0 -b 115200`
+- For OpenOCD `sudo src/openocd -f interface/picoprobe.cfg -f target/rp2040.cfg -s tcl`
+       - didn't work from Pi without `sudo`
+
+In one terminal window
+
+```shell
+cd ~/projects/pico/openocd.picoprobe
+sudo src/openocd -f interface/picoprobe.cfg -f target/rp2040.cfg -s tcl
+```
+
+In another terminal window
+
+```shell
+minicom -D /dev/ttyACM0 -b 115200
+```
+
+
+In a third  terminal window
+
+
+```shell
+cd ~/projects/pico/pico-examples/build/hello_world/serial
+gdb-multiarch hello_serial.elf
+```
+
+connect GDB to OpenOCD
+
+```console
+(gdb) target remote localhost:3333
+Remote debugging using localhost:3333
+0x10000ce0 in alarm_pool_add_alarm_at (pool=0xffffffff, time=...,
+    callback=0xd0000000, user_data=0x10000337 <__do_global_dtors_aux+42>,
+    fire_if_past=100)
+    at /home/pi/projects/pico/pico-sdk/src/common/pico_time/time.c:219
+219	        pheap_node_id_t id = add_alarm_under_lock(pool, time, callback, user_data, 0, false, &missed);
+(gdb) load
+Loading section .boot2, size 0x100 lma 0x10000000
+Loading section .text, size 0x41b8 lma 0x10000100
+Loading section .rodata, size 0xe54 lma 0x100042b8
+Loading section .binary_info, size 0x28 lma 0x1000510c
+Loading section .data, size 0x1e0 lma 0x10005134
+Start address 0x100001e8, load size 21268
+Transfer rate: 6 KB/sec, 3544 bytes/write.
+(gdb) monitor reset init
+target halted due to debug-request, current mode: Thread
+xPSR: 0xf1000000 pc: 0x000000ee msp: 0x20041f00
+target halted due to debug-request, current mode: Thread
+xPSR: 0xf1000000 pc: 0x000000ee msp: 0x20041f00
+(gdb) continue
+Continuing.
+(gdb) <Ctrl-C>
+(gdb) monitor reset init
+(gdb) b main
+(gdb) continue
+Continuing.
+target halted due to debug-request, current mode: Thread
+xPSR: 0x01000000 pc: 0x00000178 msp: 0x20041f00
+
+Thread 1 hit Breakpoint 1, main ()
+    at /home/pi/projects/pico/pico-examples/hello_world/serial/hello_serial.c:11
+11	    stdio_init_all();
+(gdb) continue
+(gdb) quit
+```
