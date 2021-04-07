@@ -119,6 +119,8 @@ make -j5
 
 Image copied from: [How to debug a Raspberry Pi Pico with a Mac, SWD and… another Pico | smittytone messes with micros](https://blog.smittytone.net/2021/02/05/how-to-debug-a-raspberry-pi-pico-with-a-mac-swd/)
 
+![Picoprobe hooked up](picoprobe/picoprobe--photo.jpeg)
+
 ### minicom
 
 ```shell
