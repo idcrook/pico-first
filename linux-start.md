@@ -1,5 +1,5 @@
-C++
-===
+Using C++ SDK on Ubuntu Linux
+=============================
 
 https://datasheets.raspberrypi.org/pico/getting-started-with-pico.pdf
 
@@ -69,12 +69,14 @@ fi
 Blink an LED
 ------------
 
-```
+```shell
 cd ~/projects/pico/pico-examples
+
+echo $PICO_SDK_PATH
+#export PICO_SDK_PATH=../../pico-sdk
+
 mkdir build
 cd build
-export PICO_SDK_PATH=../../pico-sdk
-
 cmake \
   -DCMAKE_BUILD_TYPE=Debug \
   -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
@@ -157,3 +159,25 @@ minicom -b 115200 -o -D /dev/ttyACM0
 ```
 
 -	To exit minicom, use <kbd>Ctrl-a</kbd> followed by <kbd>x</kbd>.
+
+Automatic project creation
+--------------------------
+
+```shell
+cd ~/projects/pico
+git clone https://github.com/raspberrypi/pico-project-generator.git
+cd pico-project-generator
+./pico_project.py --gui
+```
+
+```shell
+cd ~/projects/pico/pico-first-projects/projects
+~/projects/pico/pico-project-generator/pico_project.py \
+  --feature spi --feature i2c --project vscode test
+cd test/build
+cmake -DCMAKE_BUILD_TYPE=Debug \
+      -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+      ..
+
+
+```
