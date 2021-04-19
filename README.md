@@ -10,7 +10,7 @@ https://www.raspberrypi.org/documentation/rp2040/getting-started/
 Getting started notes
 ---------------------
 
-Notes from following the guide. These have been gatherer on actual systems.
+Notes from following the guide. These have been gathered on actual systems.
 
 -	[C/C++ notes on Raspberry Pi OS](raspios-start.md)
 -	[C/C++ notes on macOS](macos-start.md)
@@ -19,7 +19,7 @@ Notes from following the guide. These have been gatherer on actual systems.
 MicroPython projects
 --------------------
 
-Kept in directory named `rp2` as that is what MicroPython has named its RP2040 machine support.
+Kept in directory named [`rp2`](rp2/#readme) as that is what MicroPython has named its RP2040 machine support.
 
 ```shell
 cd ~/projects/pico
@@ -28,9 +28,9 @@ cd rp2                   # micropython projects
 cat README.md
 ```
 
-Also includes instructions to build micropython from source.
+Along with its [README](rp2/README.md), also includes instructions to [build micropython from source](rp2/BUILD.md).
 
-## picoprobe wiring
-
+picoprobe wiring
+----------------
 
 See directory [picoprobe](picoprobe/#readme)
