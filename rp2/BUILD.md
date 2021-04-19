@@ -67,9 +67,13 @@ Output
      build attributes:  MinSizeRel
 
 
-## test
+## Test the firmware build
 
-can drag the `firmware.uf2` file onto drive created by connected Pico in `BootSel` mode. It will appear as something like `/dev/ttyACM0`
+Connect a Pico to your computer via USB, holding down the `BOOTSEL` button as this is done. Release the `BOOTSEL` button. It should appear to your computer as a USB drive named `RPI-RP2`.
+
+Now, can drag the `firmware.uf2` file that was built above onto drive created by connected Pico in `BootSel` mode. Once the micropython firmware has been installed, the Pico should re-boot, this time running the micropython firmware that was just installed.
+
+It will appear as something like `/dev/ttyACM0` - this is the USB virtual serial port.
 
 ```shell
 sudo apt install minicom
