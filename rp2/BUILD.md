@@ -1,4 +1,5 @@
-# BUILD micropython from source
+BUILD micropython from source
+=============================
 
 These instructions are written based on Ubuntu systems I had available.
 
@@ -13,7 +14,6 @@ git clone -b master https://github.com/micropython/micropython.git
 cd micropython
 git submodule update --init -- lib/pico-sdk lib/tinyusb
 ```
-
 
 ### do the build stuff
 
@@ -33,7 +33,6 @@ ls build-PICO/*.{uf2,elf}
 
 #### inspect with `picotool`
 
-
 ```shell
 cd ~/projects/pico/micropython
 cd ports/rp2/
@@ -43,31 +42,33 @@ cd ports/rp2/
 
 Output
 
-    File build-PICO/firmware.uf2:
+```
+File build-PICO/firmware.uf2:
 
-    Program Information
-     name:            MicroPython
-     version:         v1.15
-     features:        USB REPL
-                      thread support
-     frozen modules:  _boot, rp2, onewire, ds18x20, uasyncio, uasyncio/core,
-                      uasyncio/event, uasyncio/funcs, uasyncio/lock, uasyncio/stream
-     binary start:    0x10000000
-     binary end:      0x10044374
-     embedded drive:  0x100a0000-0x10200000 (1408K): MicroPython
+Program Information
+ name:            MicroPython
+ version:         v1.15
+ features:        USB REPL
+                  thread support
+ frozen modules:  _boot, rp2, onewire, ds18x20, uasyncio, uasyncio/core,
+                  uasyncio/event, uasyncio/funcs, uasyncio/lock, uasyncio/stream
+ binary start:    0x10000000
+ binary end:      0x10044374
+ embedded drive:  0x100a0000-0x10200000 (1408K): MicroPython
 
-    Fixed Pin Information
-     none
+Fixed Pin Information
+ none
 
-    Build Information
-     sdk version:       1.1.0
-     pico_board:        pico
-     boot2_name:        boot2_w25q080
-     build date:        Apr 19 2021
-     build attributes:  MinSizeRel
+Build Information
+ sdk version:       1.1.0
+ pico_board:        pico
+ boot2_name:        boot2_w25q080
+ build date:        Apr 19 2021
+ build attributes:  MinSizeRel
+```
 
-
-## Test the firmware build
+Test the firmware build
+-----------------------
 
 Connect a Pico to your computer via USB, holding down the `BOOTSEL` button as this is done. Release the `BOOTSEL` button. It should appear to your computer as a USB drive named `RPI-RP2`.
 
@@ -77,8 +78,13 @@ It will appear as something like `/dev/ttyACM0` - this is the USB virtual serial
 
 ```shell
 sudo apt install minicom
-minicom -o -D /dev/ttyACM0
+minicom -o -w -D /dev/ttyACM0
 ```
+
+-	`-o` : do not initialize
+-	`-w` : turn on *linewrap* mode
+	-	displays output when is wider than terminal width (e.g., `dir(machine)`\)
+-	`-D device` : specify device
 
 There is no need to specify a baud rate, since we are using the USB virtual serial port.
 
@@ -89,7 +95,7 @@ Can press <kbd>Enter</kbd> a few times in the terminal to bring up a prompt:
 >>> help()
 ```
 
-<kbd>Ctrl</kbd>-<kbd>d</kbd> at an empty prompt will do a _soft reset_ and should come back to a micropython REPL prompt
+<kbd>Ctrl</kbd>\-<kbd>d</kbd> at an empty prompt will do a *soft reset* and should come back to a micropython REPL prompt
 
 ```python
 MPY: soft reboot
@@ -102,10 +108,10 @@ Type "help()" for more information.
 >>>
 ```
 
-<kbd>Ctrl</kbd>-<kbd>a</kbd> <kbd>x</kbd>  will allow `minicom` to disconnect/exit.
+<kbd>Ctrl</kbd>\-<kbd>a</kbd> <kbd>x</kbd> will allow `minicom` to disconnect/exit.
 
-
-## Customize micropython build
+Customize micropython build
+---------------------------
 
 Example to enable Hardware UART REPL (if the USB virtual serial port is not available, for example)
 
