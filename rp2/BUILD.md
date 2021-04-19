@@ -92,7 +92,16 @@ sudo apt install minicom
 minicom -o -D /dev/ttyACM0
 ```
 
-<kbd>Ctrl</kbd>`-`<kbd>d</kbd> will bring to a micropython prompt
+There is no need to specify a baud rate, since we are using the USB virtual serial port.
+
+Can press <kbd>Enter</kbd> a few times in the terminal to bring up a prompt:
+
+```python
+>>>
+>>> help()
+```
+
+<kbd>Ctrl</kbd>-<kbd>d</kbd> at an empty prompt will do a _soft reset_ and should come back to a micropython REPL prompt
 
 ```python
 MPY: soft reboot
@@ -104,3 +113,5 @@ Type "help()" for more information.
 >>> led.value(0)
 >>>
 ```
+
+<kbd>Ctrl</kbd>-<kbd>a</kbd> <kbd>x</kbd>  will allow `minicom` to disconnect/exit.
