@@ -3,7 +3,8 @@ BUILD micropython from source
 
 These instructions are written based on Ubuntu systems I had available.
 
-Based on `raspberry-pi-pico-python-sdk.pdf`
+-	https://www.raspberrypi.org/documentation/rp2040/getting-started/
+	-	Based on https://datasheets.raspberrypi.org/pico/raspberry-pi-pico-python-sdk.pdf
 
 ### Clone the micropython git repository
 
