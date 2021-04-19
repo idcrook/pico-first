@@ -18,8 +18,8 @@ chmod +x pico_setup.sh
 # this will create a pico sub-directory
 ./pico_setup.sh
 
-# same, but will build picoprobe version of OpenOCD
-INCLUDE_PICOPROBE=1 ./pico_setup.sh
+# same, but will build picoprobe version of OpenOCD (this is now default)
+#INCLUDE_PICOPROBE=1 ./pico_setup.sh
 ```
 
 - Installs toolchain and dependencies
