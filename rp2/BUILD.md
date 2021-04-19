@@ -67,22 +67,6 @@ Output
      build attributes:  MinSizeRel
 
 
-#### customize
-
-Example to enable UART REPL.
-
-```console
-$ cd ~/projects/pico/micropython
-$ cd ports/rp2/
-$ grep MICROPY_HW_ENABLE_UART_REPL mpconfigport.h
-#define MICROPY_HW_ENABLE_UART_REPL             (0) // useful if there is no USB
-$ vi mpconfigport.h
-### change from (0) to (1) to enable hw uart repl
-
-$ make
-```
-
-
 ## test
 
 can drag the `firmware.uf2` file onto drive created by connected Pico in `BootSel` mode. It will appear as something like `/dev/ttyACM0`
@@ -115,3 +99,19 @@ Type "help()" for more information.
 ```
 
 <kbd>Ctrl</kbd>-<kbd>a</kbd> <kbd>x</kbd>  will allow `minicom` to disconnect/exit.
+
+
+## Customize micropython build
+
+Example to enable Hardware UART REPL (if the USB virtual serial port is not available, for example)
+
+```console
+$ cd ~/projects/pico/micropython
+$ cd ports/rp2/
+$ grep MICROPY_HW_ENABLE_UART_REPL mpconfigport.h
+#define MICROPY_HW_ENABLE_UART_REPL             (0) // useful if there is no USB
+$ vi mpconfigport.h
+### change from (0) to (1) to enable hw uart repl
+
+$ make
+```
