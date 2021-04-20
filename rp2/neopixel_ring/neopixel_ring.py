@@ -8,8 +8,8 @@ import rp2
 # NUM_LEDS = 16
 NUM_LEDS = 12
 PIN_NUM = 6
-# brightness = 0.2
-brightness = 0.5
+brightness = 0.2
+# brightness = 0.5
 
 
 @rp2.asm_pio(
