@@ -8,7 +8,14 @@ import rp2
 NUM_LEDS = 12
 PIN_NUM = 6
 
-@rp2.asm_pio(sideset_init=rp2.PIO.OUT_LOW, out_shiftdir=rp2.PIO.SHIFT_LEFT, autopull=True, pull_thresh=24)
+
+@rp2.asm_pio(
+    sideset_init=rp2.PIO.OUT_LOW,
+    out_shiftdir=rp2.PIO.SHIFT_LEFT,
+    autopull=True,
+    pull_thresh=24,
+)
+# yapf: disable
 def ws2812():
     T1 = 2
     T2 = 5
@@ -21,7 +28,7 @@ def ws2812():
     label("do_zero")
     nop()                   .side(0)    [T2 - 1]
     wrap()
-
+# yapf: enable
 
 # Create the StateMachine with the ws2812 program, outputting on Pin(6).
 sm = rp2.StateMachine(0, ws2812, freq=8_000_000, sideset_base=Pin(PIN_NUM))
