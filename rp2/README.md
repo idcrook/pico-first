@@ -18,7 +18,7 @@ Install Thonny
 This will install latest thonny (`3.3.6`) using PIP. it is more recent than the distribution version (`3.2.7-1`) that is available with `apt install`.
 
 ```shell
-sudo apt install python3-pip
+sudo apt install python3-pip python3-tk
 pip3 install --user thonny
 # optional: install other recommended packages
 sudo apt install -y \
