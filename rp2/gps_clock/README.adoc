@@ -1,0 +1,37 @@
+= Clock on Pico backed by GPS Receiver time
+:xrefstyle: short
+
+Uses 5V and 3.3V I2C devices connected to Raspberry Pi Pico to implement a clock backed by GPS.
+
+== Wiring information
+
+See <<gps_clock-wiring-diagram>> for wiring instructions.
+
+[[gps_clock-wiring-diagram]]
+[pdfwidth=75%]
+.Wiring the GPS and LCD display to Pico 
+image::gps_clock.png[]
+
+== List of Files
+
+A list of files with descriptions of their function
+
+lcd/:: Wrapper code for I2C LCD Character display.
+
+test_lcd.py:: Example code for using LCD Character display.
+
+== Bill of Materials
+
+.A list of materials required for the example
+[[ring-bom-table]]
+[cols=3]
+|===
+| *Item* | *Quantity* | Details
+| Breadboard | 1 | generic part
+| Raspberry Pi Pico | 1 | https://rptl.io/pico-faq
+| 4-channel I2C-safe Bi-directional Logic Level Converter - BSS138 | 1 | https://www.adafruit.com/product/757
+| GPS Module with Integrated Antenna | 1 | https://github.com/CainZ/V.KEL-GPS
+| i2c / SPI character LCD backpack | 1 | https://www.adafruit.com/product/292
+| Standard LCD 16x2 + extras - white on blue | 1 | https://www.adafruit.com/product/181
+| 1.2" 4-Digit 7-Segment Display w/I2C Backpack | 1 | https://www.adafruit.com/product/1268
+|===
