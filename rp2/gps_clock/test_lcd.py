@@ -9,7 +9,7 @@ from lcd.rp2_i2c_adafruit_lcd import I2cLcd
 
 # The MCP23008 has a jumper selectable address: 0x20 - 0x27
 LCD_I2C_ADDR = 0x20
-LCD_AVAILABLE = False
+LCD_DETECTED = False
 
 I2C_BUS_NUMBER = 0
 I2C_SDA = Pin(8)
@@ -53,14 +53,14 @@ def test_lcd(i2c, lcd_addr):
 
 def test_main():
     """Test function for verifying basic functionality."""
-    global LCD_AVAILABLE
+    global LCD_DETECTED
     print("Running test_main")
     i2c = I2C(I2C_BUS_NUMBER, sda=I2C_SDA, scl=I2C_SCL, freq=I2C_FREQUENCY)
     device_addresses = i2c.scan()
     if LCD_I2C_ADDR in device_addresses:
-        LCD_AVAILABLE = True
+        LCD_DETECTED = True
 
-    if LCD_AVAILABLE:
+    if LCD_DETECTED:
         test_lcd(i2c, LCD_I2C_ADDR)
     else:
         print("LCD device not found")
