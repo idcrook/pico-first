@@ -1,16 +1,30 @@
 pico-first-projects
 ===================
 
-Start from the beginning with Raspberry Pi Pico and its RP2040
+Tracking my early experiments and usage of Raspberry Pi Pico.
+
+```
+├── debugger
+├── doc
+├── picoprobe
+└── rp2
+```
+
+-	[`debugger`](debugger/#readme): notes from unsuccessful Segger J-LINK attempt
+-	`doc`: placeholder directory for local downloads
+-	[`picoprobe`](picoprobe/#readme): notes for `picoprobe` (using a Pico to debug with SWD another Pico)
+-	[`rp2`](rp2/#readme): MicroPython projects. `rp2` is what the micropython uses for RP2040 (Pico) board.
+
+Getting started notes
+---------------------
+
+Start from the beginning with Raspberry Pi Pico and its RP2040. Successfully did this on three platforms: macOS, (Ubuntu) Linux (x86_64), and Raspberry Pi OS (32-bit, Model 4 B)
 
 https://www.raspberrypi.org/documentation/rp2040/getting-started/
 
 -	https://rptl.io/pico-get-started \[pdf\]
 
-Getting started notes
----------------------
-
-Notes from following the guide. These have been gathered on actual systems.
+Notes from following the guide:
 
 -	[C/C++ notes on Raspberry Pi OS](raspios-start.md)
 -	[C/C++ notes on macOS](macos-start.md)

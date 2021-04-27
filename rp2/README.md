@@ -1,6 +1,9 @@
 micropython projects
 ====================
 
+-	[`gps_clock`](gps_clock/#readme): An accurate clock based on GPS receiver
+-	[`neopixel_ring`](neopixel_ring/#readme): Driving a generic W2812 12-pixel ring (uses example `pio` code from [pico-micropython-examples](https://github.com/raspberrypi/pico-micropython-examples))
+
 Build micropython from source
 -----------------------------
 
@@ -37,7 +40,6 @@ Since I already had my user configured for `/dev` serial port access (group `dia
 
 Enter the program into Thonny's main text panel. Save to Pico as file named `test.py` and click the green arrow button to run on device.
 
-
 ```python
 from machine import Pin, Timer
 
@@ -62,11 +64,11 @@ pip3 install --user rshell
 
 Connect to attached Pico
 
-- Serial port must be available, so `minicom` and `thonny` need to not be using it.
+-	Serial port must be available, so `minicom` and `thonny` need to not be using it.
 
-```
-rshell --buffer-size=512 -p /dev/ttyACM0
-```
+	```
+	rshell --buffer-size=512 -p /dev/ttyACM0
+	```
 
 `rshell` session
 
