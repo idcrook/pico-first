@@ -3,6 +3,13 @@
 
 https://wiki.segger.com/Raspberry_Pi_Pico
 
+**TL; DR**: After configuring Ozone for a RP2040, it errors and says Hardware rev of JLink does not support multi-drop SWD (and then stops).
+
+Hardware Rev of J-Link at hand is 9.3 and [wiki page for Segger Pico](https://wiki.segger.com/Raspberry_Pi_Pico) says Rev 11+ is required.
+
+
+## Install Segger apps
+
 
 ```shell
 sudo apt install ./JLink_Linux_V698e_x86_64.deb
