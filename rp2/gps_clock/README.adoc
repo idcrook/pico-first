@@ -12,6 +12,13 @@ See <<gps_clock-wiring-diagram>> for wiring instructions.
 .Wiring the GPS and LCD display to Pico 
 image::gps_clock.png[]
 
+
+=== Voltage Notes
+
+- _1.2 inch 4-Digit 7-Segment LED_: Supports optional "VCCIO", which should allow direct 3V3 safe I2C; LED supply VCC must be 5V
+- _GPS Module_: Datasheet says operational with 3V3 VCC and IO, with typical operation 5V VCC
+- _Standard LCD 16x2_: Display and backlight require 5V; connect through logic-level converter
+
 == List of Files
 
 A list of files with descriptions of their function
@@ -31,7 +38,7 @@ test_lcd.py:: Example code for using LCD Character display.
 | Raspberry Pi Pico | 1 | https://rptl.io/pico-faq
 | 4-channel I2C-safe Bi-directional Logic Level Converter - BSS138 | 1 | https://www.adafruit.com/product/757
 | GPS Module with Integrated Antenna | 1 | https://github.com/CainZ/V.KEL-GPS
-| i2c / SPI character LCD backpack | 1 | https://www.adafruit.com/product/292
-| Standard LCD 16x2 + extras - white on blue | 1 | https://www.adafruit.com/product/181
+| i2c / SPI character LCD backpack | 1 (Optional)| https://www.adafruit.com/product/292
+| Standard LCD 16x2 + extras - white on blue | 1 (Optional) | https://www.adafruit.com/product/181
 | 1.2" 4-Digit 7-Segment Display w/I2C Backpack | 1 | https://www.adafruit.com/product/1268
 |===
