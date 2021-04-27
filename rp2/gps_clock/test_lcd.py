@@ -2,14 +2,9 @@
 
 # Adapted from https://github.com/dhylands/python_lcd/blob/master/lcd/pyb_i2c_adafruit_lcd_test.py
 
-# from pyb import I2C, delay, millis
-# from pyb_i2c_adafruit_lcd import I2cLcd
 import utime
 from machine import Pin, I2C
-from lcd import *
-# import lcd
-# from lcd import lcd_api
-# from lcd import LcdApi
+import lcd
 from lcd.rp2_i2c_adafruit_lcd import I2cLcd
 
 # The MCP23008 has a jumper selectable address: 0x20 - 0x27
@@ -23,21 +18,15 @@ I2C_FREQUENCY = 400000
 def test_main():
     """Test function for verifying basic functionality."""
     print("Running test_main")
-    #i2c = I2C(1, I2C.MASTER)
-    #lcd = I2cLcd(i2c, DEFAULT_I2C_ADDR, 4, 20)
     i2c = I2C(I2C_BUS_NUMBER, sda=I2C_SDA, scl=I2C_SCL, freq=I2C_FREQUENCY)
     lcd = I2cLcd(i2c, DEFAULT_I2C_ADDR, 2, 16)
-    #lcd.putstr("It Works!\nSecond Line\nThird Line\nFourth Line")
     lcd.putstr("It Works!\nSecond Line")
-    #delay(3000)
     utime.sleep_ms(3000)
     lcd.clear()
     count = 0
     while True:
         lcd.move_to(0, 0)
-        #lcd.putstr("%7d" % (millis() // 1000))
-        lcd.putstr("%7d" % (utime.ticks_us() // 1_000_000))
-        #delay(1000)
+        lcd.putstr("%7d" % (utime.ticks_ms() // 1_000))
         utime.sleep_ms(1000)
         count += 1
         if count % 10 == 3:
@@ -61,5 +50,4 @@ def test_main():
             lcd.backlight_on()
             lcd.display_on()
 
-#if __name__ == "__main__":
 test_main()
