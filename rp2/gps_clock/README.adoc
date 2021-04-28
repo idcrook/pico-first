@@ -1,23 +1,7 @@
-= Clock on Pico backed by GPS Receiver time
+= Work In Progress: Clock on Pico using GPS Receiver
 :xrefstyle: short
 
-Uses 5V and 3.3V I2C devices connected to Raspberry Pi Pico to implement a clock backed by GPS.
-
-== Wiring information
-
-See <<gps_clock-wiring-diagram>> for wiring instructions.
-
-[[gps_clock-wiring-diagram]]
-[pdfwidth=75%]
-.Wiring the GPS and LCD display to Pico 
-image::gps_clock.png[]
-
-
-=== Voltage Notes
-
-- _1.2 inch 4-Digit 7-Segment LED_: Supports optional "VCCIO", which should allow direct 3V3 safe I2C; LED supply VCC must be 5V
-- _GPS Module_: Datasheet says operational with 3V3 VCC and IO, with typical operation 5V VCC
-- _Standard LCD 16x2_: Display and backlight require 5V; connect through logic-level converter
+Uses 5V and 3.3V I2C devices connected to Raspberry Pi Pico to implement a clock with time backed by GPS module.
 
 == List of Files
 
@@ -27,10 +11,43 @@ lcd/:: Wrapper code for I2C LCD Character display.
 
 test_lcd.py:: Example code for using LCD Character display.
 
+digits/:: **TBD**: Wrapper code for I2C 7-segment LED display for displaying current time
+
+gps/:: **TBD**: Wrapper code for serial interface GPS module that has a PPS output
+
+
+== Wiring information
+
+See <<gps_clock-wiring-diagram>> **TBD** for wiring instructions.
+
+[[gps_clock-wiring-diagram]]
+[pdfwidth=75%]
+.Wiring the GPS and LED and optional LCD display to Pico 
+image::gps_clock.png[]
+
+
+=== Voltage Notes
+
+.Voltage and Voltage Safety Requirements
+[[gps_clock-voltage-table]]
+[cols=4]
+|===
+| *Item*                    | *5V Safe*? | *3V3 Support*? | *Details*
+| Raspberry Pi Pico         | *NO*  | Yes   | Not 5V safe; SMPS outputs 3V3
+| 4-channel Level Converter | Yes   | Yes   | Allows SDA/SCL crossing
+| GPS Module                | Yes   | Yes   | 3V3 VCC in Datasheet
+| 1.2" 7-Segment LED Display| Yes   | Yes   | VCCIO input allows SDA/SCL @3V3
+| i2c LCD backpack          | Yes   | *NO*  | Requires 5V for operation
+|===
+
+- * _1.2 inch 4-Digit 7-Segment LED_: Supports optional "VCCIO", which should allow direct 3V3 safe I2C; LED supply VCC must be 5V
+- _GPS Module_: Datasheet says operational with 3V3 VCC and IO, with typical operation 5V VCC
+- _Standard LCD 16x2_: Display and backlight require 5V; connect through logic-level converter
+
 == Bill of Materials
 
 .A list of materials required for the example
-[[ring-bom-table]]
+[[gps_clock-bom-table]]
 [cols=3]
 |===
 | *Item* | *Quantity* | Details
